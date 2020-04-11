@@ -9,7 +9,7 @@ A Button component that works on the Web, Android, iOS, Electron, and anywhere e
 ### Installation
 
 ```bash
-npm i @reactuniversal/ripple --save
+npm i @reactuniversal/button --save
 ```
 
 ### Example
