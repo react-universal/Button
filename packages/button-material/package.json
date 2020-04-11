@@ -28,5 +28,9 @@
   },
   "bugs": {
     "url": "https://github.com/react-universal/Button/issues"
+  },
+  "gitHead": "856f45758015c58330c3f01e80c2f685aa1f1500",
+  "publishConfig": {
+    "access": "public"
   }
 }
