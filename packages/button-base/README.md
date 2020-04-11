@@ -1,11 +1,11 @@
-# @reactunivseral/button-material
+# @reactunivseral/button-base
 
-The Material button used for React Universal
+The base button used for React Universal
 
 ```jsx
 import React from 'react';
 import { View, Text } from 'react-native';
-import MaterialButton from '@reactuniversal/button-material';
+import Button from '@reactuniversal/button-base';
 
 export default function Page() {
     return (

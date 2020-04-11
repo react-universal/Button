@@ -1,7 +1,1 @@
-'use strict';
-
-module.exports = buttonMaterial;
-
-function buttonMaterial() {
-    // TODO
-}
+export {default} from './Button';
