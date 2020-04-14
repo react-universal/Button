@@ -1,29 +1,19 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 
-import Button from '../../src/index';
+import Button from '../../packages/button/lib/button';
 
 import Header from '../components/Header';
 import Container from '../components/Container';
 import {storiesOf} from '../helpers/storiesOf';
 
-storiesOf('Button', module)
+storiesOf('Base Button', module)
   .addParameters({jest: ['Button']})
   .add('from click', () => (
     <Container>
       <Header title={'Ripple from where it was clicked'} />
       <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-        <Button
-          rippleColor={'blue'}
-          style={{
-            width: 180,
-            height: 250,
-            justifyContent: 'center',
-            alignItems: 'center',
-            borderWidth: 1,
-            borderColor: 'black',
-            borderRadius: 5,
-          }}>
+        <Button rippleColor={'blue'} style={{}}>
           <Text>Click Me</Text>
         </Button>
         <Button style={{width: 200, height: 200, marginLeft: 40}}>
@@ -48,7 +38,7 @@ storiesOf('Button', module)
             justifyContent: 'center',
             alignItems: 'center',
           }}>
-          <View style={{width: 48, height: 48, backgroundColor: 'red'}}></View>
+          <View style={{width: 48, height: 48, backgroundColor: 'red'}} />
         </Button>
         <Button
           rippleColor={'#9C27B0'}
