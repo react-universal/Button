@@ -1,80 +1,10 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Text,
-  ActivityIndicator,
-  TouchableWithoutFeedback,
-  View,
-} from 'react-native';
+import {TouchableWithoutFeedback, View} from 'react-native';
+import ButtonText from './ButtonText';
+import Icon from './Icon';
 
-const Icon = ({
-  icon,
-  iconPosition,
-  iconSize,
-  typeTextColor,
-  loading,
-  dense,
-}) => {
-  if (icon) {
-    return React.cloneElement(icon, {
-      style: {
-        marginRight: iconPosition == 'left' ? 8 : 0,
-        marginLeft: iconPosition == 'right' ? 8 : 0,
-      },
-      size: iconSize || (dense ? 14 : 18),
-      color: typeTextColor ? typeTextColor : 'white',
-    });
-  }
-  return null;
-};
-
-const Loading = ({loading, typeTextColor, hideLabel, dense}) => {
-  if (!loading) return null;
-
-  return (
-    <ActivityIndicator
-      size="small"
-      color={typeTextColor}
-      style={{
-        width: dense ? 12 : 16,
-        flexDirection: 'row',
-        alignItems: 'center',
-        alignSelf: 'center',
-        justifyContent: 'center',
-        marginRight: hideLabel ? 0 : 8,
-      }}
-    />
-  );
-};
-
-const ButtonText = ({
-  text,
-  textStyle,
-  typeTextColor,
-  theme,
-  hideLabel,
-  dense,
-  useInputCasing,
-}) => {
-  if (hideLabel) return null;
-  return (
-    <Text
-      numberOfLines={1}
-      style={[
-        theme.buttonText,
-        {
-          color: typeTextColor,
-          fontSize: dense ? 13 : theme.buttonText.fontSize,
-          letterSpacing: dense ? 0.3 : theme.buttonText.letterSpacing,
-        },
-        textStyle,
-      ]}>
-      {useInputCasing ? text : text.toUpperCase()}
-    </Text>
-  );
-};
-
-export default function Button({
+const Button = ({
   disabled,
   disableRipple,
   loading,
@@ -99,7 +29,7 @@ export default function Button({
   typeTextColor,
   iconSize,
   ...props
-}) {
+}) => {
   return (
     <TouchableWithoutFeedback
       onPress={onPress}
@@ -161,7 +91,7 @@ export default function Button({
       </View>
     </TouchableWithoutFeedback>
   );
-}
+};
 
 Button.propTypes = {
   theme: PropTypes.object,
@@ -198,3 +128,5 @@ Button.propTypes = {
   onPressOut: PropTypes.func,
   testID: PropTypes.string,
 };
+
+export default Button;
