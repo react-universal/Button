@@ -9,12 +9,8 @@ import MaterialButton from '@reactuniversal/button-material';
 
 export default function Page() {
     return (
-      <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-        <Button
-          style={{
-            width: 180,
-            height: 250,
-          }}>
+      <View>
+        <MaterialButton>
           <Text>Click Me</Text>
         </Button>
       </View>

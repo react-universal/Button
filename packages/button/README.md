@@ -1,11 +1,19 @@
-# `button`
+# @reactunivseral/button
 
-> TODO: description
+A universal React Button
 
-## Usage
+```jsx
+import React from 'react';
+import { View, Text } from 'react-native';
+import Button from '@reactuniversal/button';
 
-```
-const button = require('button');
-
-// TODO: DEMONSTRATE API
+export default function Page() {
+    return (
+      <View>
+        <Button>
+          <Text>Click Me</Text>
+        </Button>
+      </View>
+    );
+}`;
 ```
