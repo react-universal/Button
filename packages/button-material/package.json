@@ -11,7 +11,7 @@
   "author": "codypearce <codyapearce@gmail.com>",
   "homepage": "https://react-universal.github.io/button/tree/master/packages/button-material#readme",
   "license": "ISC",
-  "main": "lib/button-material.js",
+  "main": "lib/Button.js",
   "directories": {
     "lib": "lib",
     "test": "__tests__"

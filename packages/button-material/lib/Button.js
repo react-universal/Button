@@ -6,24 +6,20 @@ import OutlinedButton from './OutlinedButton/OutlinedButton.js';
 import ContainedButton from './ContainedButton/ContainedButton.js';
 import FlatButton from './FlatButton/FlatButton.js';
 
-class Button extends Component {
-  static propTypes = {
-    type: PropTypes.string,
-  };
-
-  render() {
-    const {type, ...rest} = this.props;
-
-    if (type == 'outlined') {
-      return <OutlinedButton {...rest} />;
-    } else if (type == 'contained') {
-      return <ContainedButton {...rest} />;
-    } else if (type === 'flat') {
-      return <FlatButton {...rest} />;
-    } else {
-      return <TextButton {...rest} />;
-    }
+const Button = ({type, ...rest}) => {
+  if (type === 'outlined') {
+    return <OutlinedButton {...rest} />;
+  } else if (type == 'contained') {
+    return <ContainedButton {...rest} />;
+  } else if (type === 'flat') {
+    return <FlatButton {...rest} />;
+  } else {
+    return <TextButton {...rest} />;
   }
-}
+};
+
+Button.propTypes = {
+  type: PropTypes.string,
+};
 
 export default Button;

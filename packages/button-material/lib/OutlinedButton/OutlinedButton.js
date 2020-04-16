@@ -1,35 +1,22 @@
-import React, { Component } from 'react';
+import React, { useState} from 'react';
 import PropTypes from 'prop-types';
-import withTheme from '../../../Theme/withTheme';
 
 import ButtonBase from '../ButtonBase/ButtonBase';
-import color from 'color';
+import {default as ColorUtil} from 'color';
 import { Hoverable } from '../../../';
 
-class OutlinedButton extends Component {
-  static propTypes = {
-    disabled: PropTypes.bool,
-    color: PropTypes.string,
-    textColor: PropTypes.string,
-    rippleColor: PropTypes.string,
-    theme: PropTypes.object,
-    borderSize: PropTypes.number,
-    containerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-  };
 
-  state = {
-    stateBackgroundColor: null,
-  };
+const OutlinedButton = ({containerStyle, disabled, color, textColor, rippleColor, theme, borderSize, containerStyle}) => {
+  const [stateBackgroundColor, setStateBackgroundColor] = useState(null);
 
-  getButtonStyles() {
-    const { theme, textColor, disabled, borderSize } = this.props;
+  function getButtonStyles() {
 
     let borderColor = textColor ? textColor : theme.primary.main;
 
     const buttonStyles = [
       theme.outlinedButton,
       {
-        backgroundColor: this.getBackgroundColor(),
+        backgroundColor: getBackgroundColor(),
         borderColor: disabled ? 'rgba(0, 0, 0, 0.26)' : borderColor,
         borderWidth: borderSize ? borderSize : theme.outlinedButton.borderWidth,
       },
@@ -37,9 +24,8 @@ class OutlinedButton extends Component {
     return buttonStyles;
   }
 
-  getBackgroundColor = () => {
-    const { color: userColor, disabled } = this.props;
-    const { stateBackgroundColor } = this.state;
+  function getBackgroundColor () {
+
 
     let backgroundColor = userColor ? userColor : 'transparent';
 
@@ -50,52 +36,57 @@ class OutlinedButton extends Component {
     return disabled ? 'transparent' : backgroundColor;
   };
 
-  getRippleColor() {
-    const { textColor, theme, rippleColor } = this.props;
+  function getRippleColor() {
 
     let implementedRippleColor = textColor ? textColor : theme.primary.main;
 
     return rippleColor ? rippleColor : implementedRippleColor;
   }
 
-  getTextColor() {
-    const { textColor, disabled, theme } = this.props;
+  function getTextColor() {
 
     let implementedTextColor = textColor ? textColor : theme.primary.main;
 
     return disabled ? 'rgba(0, 0, 0, 0.26)' : implementedTextColor;
   }
 
-  handleHover(toggle) {
+  function handleHover(toggle) {
     let implementedColor = toggle
-      ? color(this.getTextColor())
+      ? ColorUtil(getTextColor())
           .alpha(0.12)
           .rgb()
           .string()
       : null;
 
-    this.setState({ stateBackgroundColor: implementedColor });
+      setStateBackgroundColor(implementedColor);
   }
-
-  render() {
-    const { containerStyle, ...props } = this.props;
-
-    return (
-      <Hoverable
-        onHoverIn={() => this.handleHover(true)}
-        onHoverOut={() => this.handleHover(false)}
-        style={containerStyle}>
-        {() => (
-          <ButtonBase
-            typeRippleColor={this.getRippleColor()}
-            typeTextColor={this.getTextColor()}
-            typeButtonStyles={this.getButtonStyles()}
-            {...props}
-          />
-        )}
-      </Hoverable>
-    );
-  }
+  return (
+    <Hoverable
+    onHoverIn={() => handleHover(true)}
+    onHoverOut={() => handleHover(false)}
+    style={containerStyle}>
+    {() => (
+      <ButtonBase
+        typeRippleColor={getRippleColor()}
+        typeTextColor={getTextColor()}
+        typeButtonStyles={getButtonStyles()}
+        {...props}
+      />
+    )}
+  </Hoverable>
+  )
 }
 
-export default withTheme(OutlinedButton);
+
+OutlinedButton.propTypes = {
+  disabled: PropTypes.bool,
+  color: PropTypes.string,
+  textColor: PropTypes.string,
+  rippleColor: PropTypes.string,
+  theme: PropTypes.object,
+  borderSize: PropTypes.number,
+  containerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+};
+
+
+export default OutlinedButton
