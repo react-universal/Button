@@ -1,4 +1,3 @@
-import {addParameters, configure, addDecorator} from '@storybook/react';
-const context = require.context('../storybook/stories', true, /.(js|mdx)$/);
+import {configure} from '@storybook/react';
 
-configure(context, module);
+configure(require.context('../packages', true, /\.stories\.js$/), module);
