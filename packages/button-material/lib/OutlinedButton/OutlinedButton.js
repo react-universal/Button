@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import ButtonBase from '../ButtonBase/ButtonBase';
 import {default as ColorUtil} from 'color';
-import { Hoverable } from '../../../';
+import {Hoverable} from '../../../button/lib/Hoverable';
 
 
 const OutlinedButton = ({containerStyle, disabled, color, textColor, rippleColor, theme, borderSize, containerStyle}) => {

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import TextButton from './TextButton/TextButton.js';
@@ -9,7 +9,7 @@ import FlatButton from './FlatButton/FlatButton.js';
 const Button = ({type, ...rest}) => {
   if (type === 'outlined') {
     return <OutlinedButton {...rest} />;
-  } else if (type == 'contained') {
+  } else if (type === 'contained') {
     return <ContainedButton {...rest} />;
   } else if (type === 'flat') {
     return <FlatButton {...rest} />;

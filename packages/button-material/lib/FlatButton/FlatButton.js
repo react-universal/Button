@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import withTheme from '../../../Theme/withTheme';
 
 import ButtonBase from '../ButtonBase/ButtonBase';
-import { Hoverable } from '../../../';
+import {Hoverable} from '../../../button/lib/Hoverable';
 import color from 'color';
 
 class FlatButton extends Component {
@@ -22,7 +22,7 @@ class FlatButton extends Component {
   };
 
   getButtonStyles() {
-    const { theme } = this.props;
+    const {theme} = this.props;
 
     const buttonStyles = {
       ...theme.containedButton,
@@ -33,8 +33,8 @@ class FlatButton extends Component {
   }
 
   getBackgroundColor() {
-    const { color: userColor, disabled, theme } = this.props;
-    const { stateBackgroundColor } = this.state;
+    const {color: userColor, disabled, theme} = this.props;
+    const {stateBackgroundColor} = this.state;
 
     let backgroundColor = userColor ? userColor : theme.primary.main;
 
@@ -44,7 +44,7 @@ class FlatButton extends Component {
   }
 
   getRippleColor() {
-    const { rippleColor } = this.props;
+    const {rippleColor} = this.props;
 
     let implementedRippleColor = 'rgba(255, 255,255, 0.56)';
 
@@ -52,7 +52,7 @@ class FlatButton extends Component {
   }
 
   getTextColor() {
-    const { textColor, disabled } = this.props;
+    const {textColor, disabled} = this.props;
 
     let implementedTextColor = disabled ? 'rgba(0, 0, 0, 0.26)' : 'white';
     if (textColor) implementedTextColor = textColor;
@@ -68,10 +68,10 @@ class FlatButton extends Component {
           .string()
       : null;
 
-    this.setState({ stateBackgroundColor: implementedColor });
+    this.setState({stateBackgroundColor: implementedColor});
   }
   render() {
-    const { containerStyle, ...props } = this.props;
+    const {containerStyle, ...props} = this.props;
 
     return (
       <Hoverable

@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import { Animated, Platform } from 'react-native';
+import React, {Component} from 'react';
+import {Animated, Platform} from 'react-native';
 
 import PropTypes from 'prop-types';
 import withTheme from '../../../Theme/withTheme';
 
 import ButtonBase from '../ButtonBase/ButtonBase';
-import { Hoverable } from '../../../';
+import {Hoverable} from '../../../button/lib/Hoverable';
 import color from 'color';
 
 class ContainedButton extends Component {
@@ -73,7 +73,7 @@ class ContainedButton extends Component {
   }
 
   getShadowStyle() {
-    const { theme } = this.props;
+    const {theme} = this.props;
     const {
       animatedShadowRadius,
       animatedShadowOpacity,
@@ -98,7 +98,7 @@ class ContainedButton extends Component {
   }
 
   getButtonStyles() {
-    const { theme } = this.props;
+    const {theme} = this.props;
 
     const buttonStyles = {
       ...theme.containedButton,
@@ -109,8 +109,8 @@ class ContainedButton extends Component {
   }
 
   getBackgroundColor() {
-    const { color: userColor, disabled, theme } = this.props;
-    const { stateBackgroundColor } = this.state;
+    const {color: userColor, disabled, theme} = this.props;
+    const {stateBackgroundColor} = this.state;
 
     let backgroundColor = userColor ? userColor : theme.primary.main;
 
@@ -120,7 +120,7 @@ class ContainedButton extends Component {
   }
 
   getRippleColor() {
-    const { rippleColor } = this.props;
+    const {rippleColor} = this.props;
 
     let implementedRippleColor = 'rgba(255, 255,255, 0.56)';
 
@@ -128,7 +128,7 @@ class ContainedButton extends Component {
   }
 
   getTextColor() {
-    const { textColor, disabled } = this.props;
+    const {textColor, disabled} = this.props;
 
     let implementedTextColor = disabled ? 'rgba(0, 0, 0, 0.26)' : 'white';
     if (textColor) implementedTextColor = textColor;
@@ -156,17 +156,17 @@ class ContainedButton extends Component {
         : null;
     }
 
-    this.setState({ stateBackgroundColor: implementedColor });
+    this.setState({stateBackgroundColor: implementedColor});
   }
 
   handleOnPressIn = (...args) => {
-    const { onPressIn } = this.props;
+    const {onPressIn} = this.props;
     this.animateShadow(true);
 
     if (onPressIn) onPressIn(args);
   };
   handleOnPressOut = (...args) => {
-    const { onPressOut } = this.props;
+    const {onPressOut} = this.props;
 
     this.animateShadow(false);
 
