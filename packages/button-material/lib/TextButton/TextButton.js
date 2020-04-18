@@ -17,12 +17,10 @@ const TextButton = ({
   const [stateBackgroundColor, setStateBackgroundColor] = useState(null);
 
   function getButtonStyles() {
-    const {theme} = this.props;
-
     const buttonStyles = [
       theme.textButton,
       {
-        backgroundColor: this.getBackgroundColor(),
+        backgroundColor: getBackgroundColor(),
       },
     ];
     return buttonStyles;
@@ -41,16 +39,12 @@ const TextButton = ({
   }
 
   function getRippleColor() {
-    const {textColor, theme, rippleColor} = this.props;
-
     let implementedRippleColor = textColor ? textColor : theme.primary.main;
 
     return rippleColor ? rippleColor : implementedRippleColor;
   }
 
   function getTextColor() {
-    const {textColor, disabled, theme} = this.props;
-
     let implementedTextColor = textColor ? textColor : theme.primary.main;
 
     return disabled ? 'rgba(0, 0, 0, 0.26)' : implementedTextColor;

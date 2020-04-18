@@ -1,16 +1,23 @@
-import React, { useState} from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 
 import ButtonBase from '../ButtonBase/ButtonBase';
 import {default as ColorUtil} from 'color';
 import {Hoverable} from '../../../button/lib/Hoverable';
 
-
-const OutlinedButton = ({containerStyle, disabled, color, textColor, rippleColor, theme, borderSize, containerStyle}) => {
+const OutlinedButton = ({
+  containerStyle,
+  disabled,
+  color,
+  textColor,
+  rippleColor,
+  theme,
+  borderSize,
+  ...props
+}) => {
   const [stateBackgroundColor, setStateBackgroundColor] = useState(null);
 
   function getButtonStyles() {
-
     let borderColor = textColor ? textColor : theme.primary.main;
 
     const buttonStyles = [
@@ -24,27 +31,23 @@ const OutlinedButton = ({containerStyle, disabled, color, textColor, rippleColor
     return buttonStyles;
   }
 
-  function getBackgroundColor () {
-
-
-    let backgroundColor = userColor ? userColor : 'transparent';
+  function getBackgroundColor() {
+    let backgroundColor = color ? color : 'transparent';
 
     backgroundColor = stateBackgroundColor
       ? stateBackgroundColor
       : backgroundColor;
 
     return disabled ? 'transparent' : backgroundColor;
-  };
+  }
 
   function getRippleColor() {
-
     let implementedRippleColor = textColor ? textColor : theme.primary.main;
 
     return rippleColor ? rippleColor : implementedRippleColor;
   }
 
   function getTextColor() {
-
     let implementedTextColor = textColor ? textColor : theme.primary.main;
 
     return disabled ? 'rgba(0, 0, 0, 0.26)' : implementedTextColor;
@@ -58,25 +61,24 @@ const OutlinedButton = ({containerStyle, disabled, color, textColor, rippleColor
           .string()
       : null;
 
-      setStateBackgroundColor(implementedColor);
+    setStateBackgroundColor(implementedColor);
   }
   return (
     <Hoverable
-    onHoverIn={() => handleHover(true)}
-    onHoverOut={() => handleHover(false)}
-    style={containerStyle}>
-    {() => (
-      <ButtonBase
-        typeRippleColor={getRippleColor()}
-        typeTextColor={getTextColor()}
-        typeButtonStyles={getButtonStyles()}
-        {...props}
-      />
-    )}
-  </Hoverable>
-  )
-}
-
+      onHoverIn={() => handleHover(true)}
+      onHoverOut={() => handleHover(false)}
+      style={containerStyle}>
+      {() => (
+        <ButtonBase
+          typeRippleColor={getRippleColor()}
+          typeTextColor={getTextColor()}
+          typeButtonStyles={getButtonStyles()}
+          {...props}
+        />
+      )}
+    </Hoverable>
+  );
+};
 
 OutlinedButton.propTypes = {
   disabled: PropTypes.bool,
@@ -88,5 +90,4 @@ OutlinedButton.propTypes = {
   containerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 };
 
-
-export default OutlinedButton
+export default OutlinedButton;

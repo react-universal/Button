@@ -1,94 +1,90 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
-import withTheme from '../../../Theme/withTheme';
 
 import ButtonBase from '../ButtonBase/ButtonBase';
 import {Hoverable} from '../../../button/lib/Hoverable';
-import color from 'color';
+import {default as ColorUtil} from 'color';
 
-class FlatButton extends Component {
-  static propTypes = {
-    disabled: PropTypes.bool,
-    color: PropTypes.string,
-    textColor: PropTypes.string,
-    rippleColor: PropTypes.string,
-    theme: PropTypes.object,
-    onPressIn: PropTypes.func,
-    onPressOut: PropTypes.func,
-    containerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-  };
-  state = {
-    stateBackgroundColor: null,
-  };
+const FlatButton = ({
+  disabled,
+  color,
+  textColor,
+  rippleColor,
+  theme,
+  onPressIn,
+  onPressOut,
+  containerStyle,
+  ...props
+}) => {
+  const [stateBackgroundColor, setStateBackgroundColor] = useState(null);
 
-  getButtonStyles() {
-    const {theme} = this.props;
-
+  function getButtonStyles() {
     const buttonStyles = {
       ...theme.containedButton,
-      backgroundColor: this.getBackgroundColor(),
+      backgroundColor: getBackgroundColor(),
     };
 
     return buttonStyles;
   }
 
-  getBackgroundColor() {
-    const {color: userColor, disabled, theme} = this.props;
-    const {stateBackgroundColor} = this.state;
-
-    let backgroundColor = userColor ? userColor : theme.primary.main;
+  function getBackgroundColor() {
+    let backgroundColor = color ? color : theme.primary.main;
 
     backgroundColor = disabled ? 'rgba(0, 0, 0, 0.12)' : backgroundColor;
 
     return stateBackgroundColor ? stateBackgroundColor : backgroundColor;
   }
 
-  getRippleColor() {
-    const {rippleColor} = this.props;
-
+  function getRippleColor() {
     let implementedRippleColor = 'rgba(255, 255,255, 0.56)';
 
     return rippleColor ? rippleColor : implementedRippleColor;
   }
 
-  getTextColor() {
-    const {textColor, disabled} = this.props;
-
+  function getTextColor() {
     let implementedTextColor = disabled ? 'rgba(0, 0, 0, 0.26)' : 'white';
     if (textColor) implementedTextColor = textColor;
 
     return implementedTextColor;
   }
 
-  handleHover(toggle) {
+  function handleHover(toggle) {
     let implementedColor = toggle
-      ? color(this.getBackgroundColor())
+      ? ColorUtil(getBackgroundColor())
           .darken(0.15)
           .rgb()
           .string()
       : null;
 
-    this.setState({stateBackgroundColor: implementedColor});
+    setStateBackgroundColor(implementedColor);
   }
-  render() {
-    const {containerStyle, ...props} = this.props;
 
-    return (
-      <Hoverable
-        onHoverIn={() => this.handleHover(true)}
-        onHoverOut={() => this.handleHover(false)}
-        style={containerStyle}>
-        {() => (
-          <ButtonBase
-            typeRippleColor={this.getRippleColor()}
-            typeTextColor={this.getTextColor()}
-            typeButtonStyles={this.getButtonStyles()}
-            {...props}
-          />
-        )}
-      </Hoverable>
-    );
-  }
-}
+  return (
+    <Hoverable
+      onHoverIn={() => handleHover(true)}
+      onHoverOut={() => handleHover(false)}
+      style={containerStyle}>
+      {() => (
+        <ButtonBase
+          typeRippleColor={getRippleColor()}
+          typeTextColor={getTextColor()}
+          typeButtonStyles={getButtonStyles()}
+          {...props}
+        />
+      )}
+    </Hoverable>
+  );
+};
 
-export default withTheme(FlatButton);
+FlatButton.propTypes = {
+  disabled: PropTypes.bool,
+  color: PropTypes.string,
+  textColor: PropTypes.string,
+  rippleColor: PropTypes.string,
+  theme: PropTypes.object,
+  onPressIn: PropTypes.func,
+  onPressOut: PropTypes.func,
+  containerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+};
+
+export default FlatButton;
