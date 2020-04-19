@@ -1,0 +1,32 @@
+{
+  "name": "@reactuniversal/button-api",
+  "version": "0.0.1",
+  "description": "Universal Button API for React and React Native",
+  "keywords": [
+    "react",
+    "react-native",
+    "universal",
+    "button"
+  ],
+  "author": "codypearce <codyapearce@gmail.com>",
+  "homepage": "https://react-universal.github.io/button/tree/master/packages/button-api#readme",
+  "license": "ISC",
+  "main": "lib/ButtonApi.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/react-universal/Button.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/react-universal/Button/issues"
+  }
+}
