@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {TouchableWithoutFeedback, View} from 'react-native';
+import Hoverable from './Hoverable';
 
 const Button = ({
   disabled,
@@ -15,6 +16,9 @@ const Button = ({
   left,
   activeStyles,
   active,
+  onHoverOut,
+  onHoverIn,
+  hoverStyles,
   ...props
 }) => {
   return (
@@ -23,17 +27,23 @@ const Button = ({
       disabled={disabled || loading}
       testID={testID}
       {...props}>
-      <View
-        style={[
-          style,
-          active && activeStyles,
-          disabled && disabledStyles,
-          loading && loadingStyles,
-        ]}>
-        {left}
-        {children}
-        {right}
-      </View>
+      <Hoverable onHoverOut={onHoverOut} onHoverIn={onHoverIn}>
+        {isHovererd => (
+          <View
+            style={[
+              style,
+              isHovererd && hoverStyles,
+              active && activeStyles,
+
+              loading && loadingStyles,
+              disabled && disabledStyles,
+            ]}>
+            {left}
+            {children}
+            {right}
+          </View>
+        )}
+      </Hoverable>
     </TouchableWithoutFeedback>
   );
 };
@@ -54,6 +64,10 @@ Button.propTypes = {
 
   disabled: PropTypes.bool,
   disabledStyles: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+
+  onHoverOut: PropTypes.func,
+  onHoverIn: PropTypes.func,
+  hoverStyles: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
 
   testID: PropTypes.string,
 };

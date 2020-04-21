@@ -12,7 +12,8 @@
     }
   },
   "rules": {
-    "strict": 0
+    "strict": 0,
+    "no-inner-declarations": "off"
   },
   "extends": ["eslint:recommended", "plugin:react/recommended"]
 }
