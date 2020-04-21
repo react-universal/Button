@@ -41,12 +41,19 @@ const Button = ({
 Button.propTypes = {
   style: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   children: PropTypes.node,
+  right: PropTypes.node,
+  left: PropTypes.node,
 
   onPress: PropTypes.func,
 
   loading: PropTypes.bool,
+  loadingStyles: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+
+  activeStyles: PropTypes.bool,
+  active: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
 
   disabled: PropTypes.bool,
+  disabledStyles: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
 
   testID: PropTypes.string,
 };

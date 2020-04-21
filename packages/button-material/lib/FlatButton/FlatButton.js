@@ -11,8 +11,6 @@ const FlatButton = ({
   textColor,
   rippleColor,
   theme,
-  onPressIn,
-  onPressOut,
   containerStyle,
   ...props
 }) => {

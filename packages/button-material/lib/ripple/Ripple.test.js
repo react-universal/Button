@@ -3,7 +3,7 @@ import {Ripple} from '../../';
 
 import renderer from 'react-test-renderer';
 
-test('Ripple Renders', () => {
+it('Ripple Renders', () => {
   const tree = renderer.create(<Ripple />).toJSON();
   expect(tree).toMatchSnapshot();
 });
